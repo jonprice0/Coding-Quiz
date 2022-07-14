@@ -43,9 +43,69 @@ var questionArr = [
     }
 ];
 
+var renderFirstQuestion = function() {
+    document.querySelector("h1").innerHTML = questionArr[i].question;
+    
+    var btn1 = document.createElement("button"); 
+    btn1.innerHTML = questionArr[i].A1;
+    btn1.className="choices";
+    btn1.id="btn1";            
+    document.body.appendChild(btn1);
+    
+    var btn2 = document.createElement("button"); 
+    btn2.innerHTML = questionArr[i].A2;  
+    btn2.className="choices"; 
+    btn2.id="btn2";              
+    document.body.appendChild(btn2);
+    
+    var btn3 = document.createElement("button"); 
+    btn3.innerHTML = questionArr[i].A3;  
+    btn3.className="choices"; 
+    btn3.id="btn3";              
+    document.body.appendChild(btn3);
+    
+    var btn4 = document.createElement("button"); 
+    btn4.innerHTML = questionArr[i].A4; 
+    btn4.className="choices";
+    btn4.id="btn4";                
+    document.body.appendChild(btn4);
+
+    var evaluation = document.createElement("p");
+    document.body.appendChild(evaluation);
+    evaluation.id="eval";
+};
+
+var renderNextQuestion = function(previousAnswer) {
+    if (i < questionArr.length) {
+        document.querySelector("h1").innerHTML = questionArr[i].question;
+        document.querySelector("#btn1").innerHTML = questionArr[i].A1;
+        document.querySelector("#btn2").innerHTML = questionArr[i].A2;
+        document.querySelector("#btn3").innerHTML = questionArr[i].A3;
+        document.querySelector("#btn4").innerHTML = questionArr[i].A4;
+
+        if (previousAnswer === true) {
+            document.querySelector("#eval").innerHTML = "Correct!";
+        } else {
+            document.querySelector("#eval").innerHTML = "Wrong!";
+        }
+    } else {
+        endQuiz(previousAnswer);
+    }
+};
+var evaluateAnswer = function(event) {
+    if (event.target.textContent === questionArr[i].answer) {
+        i++;
+        renderNextQuestion(true);
+    } else {
+        timeLeft = timeLeft - 10;
+        i++;
+        renderNextQuestion(false);
+    }   
+};
+
 var quizMode = function() {
     document.querySelector("p").remove();
-    document.querySelector("#start").remove(); 
+    document.querySelector("#start-btn").remove(); 
     renderFirstQuestion();
     document.querySelector("#btn1").addEventListener("click", evaluateAnswer);
     document.querySelector("#btn2").addEventListener("click", evaluateAnswer);
@@ -62,4 +122,4 @@ var countdown = setInterval(function() {
     }, 1000);
 };
 
-document.querySelector("#start").addEventListener("click", quizMode);
+document.querySelector("#start-btn").addEventListener("click", quizMode);
