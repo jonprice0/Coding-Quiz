@@ -1,3 +1,5 @@
+var timeLeft = 75;
+var i = 0
 var questionArr = [
     {
         "question": "Commonly used data types do NOT include:",
@@ -40,3 +42,24 @@ var questionArr = [
         "answer": "4. console.log"
     }
 ];
+
+var quizMode = function() {
+    document.querySelector("p").remove();
+    document.querySelector("#start").remove(); 
+    renderFirstQuestion();
+    document.querySelector("#btn1").addEventListener("click", evaluateAnswer);
+    document.querySelector("#btn2").addEventListener("click", evaluateAnswer);
+    document.querySelector("#btn3").addEventListener("click", evaluateAnswer);
+    document.querySelector("#btn4").addEventListener("click", evaluateAnswer);
+var countdown = setInterval(function() {
+        if (timeLeft > 0 && i < questionArr.length) {
+            document.querySelector("#timer").innerHTML = "Timer: " + timeLeft;
+            timeLeft--;
+        } else {
+            clearInterval(countdown);
+            endQuiz();
+        }
+    }, 1000);
+};
+
+document.querySelector("#start").addEventListener("click", quizMode);
