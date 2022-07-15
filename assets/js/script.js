@@ -44,6 +44,8 @@ var questionArr = [
 ];
 
 var renderFirstQuestion = function() {
+    document.querySelector("#timer").innerHTML = "Timer: " + timeLeft;
+
     document.querySelector("h1").innerHTML = questionArr[i].question;
     
     var btn1 = document.createElement("button"); 
@@ -75,6 +77,60 @@ var renderFirstQuestion = function() {
     evaluation.id="eval";
 };
 
+var endQuiz = function(previousAnswer) {
+    document.querySelector("#timer").innerHTML = "Timer: " + timeLeft;
+
+    if (timeLeft > localStorage.getItem("highscore")) {
+        localStorage.setItem("highscore", timeLeft)
+    };
+    document.querySelector("h1").remove();
+    document.querySelector("#btn1").remove();
+    document.querySelector("#btn2").remove();
+    document.querySelector("#btn3").remove();
+    document.querySelector("#btn4").remove();
+    document.querySelector("#eval").remove();
+
+    var done = document.createElement("h1");
+    done.textContent = "All done!";
+    document.body.appendChild(done);
+
+    var score = document.createElement("p");
+    score.textContent = `Your final score is ${timeLeft}.`;
+    document.body.appendChild(score);
+
+    var initialsForm = document.createElement("form");
+    document.body.appendChild(initialsForm);
+    
+    var formLabel = document.createElement("label");
+    formLabel.innerHTML = "Enter initials: "
+    document.form.appendChild(formLabel);
+    
+    var formInput = document.createElement("input");
+    formInput.type = "text";
+    document.form.appendChild(formInput);
+
+    var formButton = document.createElement("button");
+    button.type = "submit";
+    document.form.appendChild(formButton);
+
+    var evaluation = document.createElement("p");
+    document.body.appendChild(evaluation);
+    evaluation.id="eval";
+
+    if (previousAnswer === true) {
+        document.querySelector("#eval").innerHTML = "Correct!";
+    } else {
+        document.querySelector("#eval").innerHTML = "Wrong!";
+    }
+
+    const clearResponse = function() {
+        document.querySelector("#eval").innerHTML = "";
+    }
+    const responseTimeout = setTimeout(clearResponse, 2000);
+    responseTimeout();
+
+};
+
 var renderNextQuestion = function(previousAnswer) {
     if (i < questionArr.length) {
         document.querySelector("h1").innerHTML = questionArr[i].question;
@@ -88,16 +144,24 @@ var renderNextQuestion = function(previousAnswer) {
         } else {
             document.querySelector("#eval").innerHTML = "Wrong!";
         }
+
+        const clearResponse = function() {
+            document.querySelector("#eval").innerHTML = "";
+        }
+        const responseTimeout = setTimeout(clearResponse, 2000);
+        responseTimeout();
+
     } else {
         endQuiz(previousAnswer);
     }
 };
+
 var evaluateAnswer = function(event) {
     if (event.target.textContent === questionArr[i].answer) {
         i++;
         renderNextQuestion(true);
     } else {
-        timeLeft = timeLeft - 10;
+        timeLeft = timeLeft -10;
         i++;
         renderNextQuestion(false);
     }   
@@ -113,11 +177,10 @@ var quizMode = function() {
     document.querySelector("#btn4").addEventListener("click", evaluateAnswer);
 var countdown = setInterval(function() {
         if (timeLeft > 0 && i < questionArr.length) {
-            document.querySelector("#timer").innerHTML = "Timer: " + timeLeft;
             timeLeft--;
+            document.querySelector("#timer").innerHTML = "Timer: " + timeLeft;
         } else {
             clearInterval(countdown);
-            endQuiz();
         }
     }, 1000);
 };
