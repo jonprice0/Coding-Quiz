@@ -1,5 +1,6 @@
 var timeLeft = 75;
 var i = 0
+
 var questionArr = [
     {
         "question": "Commonly used data types do NOT include:",
@@ -43,36 +44,34 @@ var questionArr = [
     }
 ];
 
+var handleScoreSubmit = function(event) {
+    event.preventDefault();
+
+    var initials = document.querySelector("input[name='initials']").value;
+    var score = timeLeft;
+    if (!localStorage.getItem("scores")) {
+        var scores = [];
+        localStorage.setItem("scores", JSON.stringify(scores));
+    }
+    var scoresArr = JSON.parse(localStorage.getItem("scores"));
+    scoresArr.push(`${initials} - ${score}`);
+    localStorage.setItem("scores", JSON.stringify(scoresArr));
+    alert("Your score has been saved!");
+    location.replace('./high-score.html')     
+};
+
 var endQuiz = function(previousAnswer) {
-    if (timeLeft > localStorage.getItem("highscore")) {
-        localStorage.setItem("highscore", timeLeft)
-    };
-    
+    document.querySelector("#timer").innerHTML = "Timer: " + timeLeft;
+    document.getElementById("quiz-mode").style.display = "none";
     document.getElementById("end-quiz").style.display = "block";
     document.getElementById("final-score").innerHTML = `Your final score is ${timeLeft}.`;
+    document.querySelector("#initials-submit-btn").addEventListener("click", handleScoreSubmit);
 
     if (previousAnswer === true) {
         document.getElementById("eval-last").innerHTML = "Correct!";
     } else {
         document.getElementById("eval-last").innerHTML = "Wrong!";
     }
-
-    const clearResponseLast = function() {
-        document.getElementById("eval-last").innerHTML = "";
-    }
-    const responseTimeout = setTimeout(clearResponseLast, 1500);
-    responseTimeout();
-};
-
-var countdown = function() {
-    setInterval(function() {
-        if (timeLeft > 0 && i < questionArr.length) {
-            timeLeft--;
-            document.querySelector("#timer").innerHTML = "Timer: " + timeLeft;
-        } else {
-            clearInterval(countdown);
-        }
-    }, 1000);
 };
 
 var renderQuestion = function(previousAnswer) {
@@ -95,15 +94,7 @@ var renderQuestion = function(previousAnswer) {
         } else {
             document.getElementById("eval").innerHTML = "";
         }
-
-        const clearResponseLast = function() {
-            document.getElementById("eval").innerHTML = "";
-        }
-        const responseTimeout = setTimeout(clearResponseLast, 1500);
-        responseTimeout();
-
     } else {
-        document.getElementById("quiz-mode").style.display = "none";
         endQuiz(previousAnswer);
     }
 };
@@ -121,13 +112,16 @@ var handleAnswerSubmit = function(event) {
 
 var startQuiz = function() {
     document.getElementById("home-page").style.display = "none";
-    document.querySelector("#timer").innerHTML = "Timer: 75";
-    countdown();
+    document.querySelector("#timer").innerHTML = "Timer: " + timeLeft;
     renderQuestion();
+    var countdown = setInterval(function() {
+        if (timeLeft === 0 || i > questionArr.length - 1) {
+            clearInterval(countdown);
+        } else {
+            timeLeft--;
+            document.querySelector("#timer").innerHTML = "Timer: " + timeLeft;
+        };
+    }, 1000);
 };
-//         const clearResponse = function() {
-//             document.querySelector("#eval").innerHTML = "";
-//         }
-//         const responseTimeout = setTimeout(clearResponse, 2000);
-//         responseTimeout();
+
 document.querySelector("#start-btn").addEventListener("click", startQuiz);

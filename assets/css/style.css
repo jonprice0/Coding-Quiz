@@ -9,3 +9,11 @@
 #end-quiz {
     display: none
 }
+
+#no-scores {
+    display: none
+}
+
+#scores-list {
+    display: block
+}
