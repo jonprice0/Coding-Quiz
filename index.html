@@ -12,10 +12,34 @@
         <a href="./high-score.html">View high scores</a>
         <span id="timer">Timer: 0</span>
     </header>
+
     <main>
-        <h1>Coding Quiz Challenge</h1>
-        <p>Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds!</p>
-        <button id="start-btn">Start Quiz</button>
+        <section class="home-page" id="home-page">
+            <h1>Coding Quiz Challenge</h1>
+            <p>Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds!</p>
+            <button id="start-btn">Start Quiz</button>
+        </section>
+
+        <section class="quiz-mode" id="quiz-mode">
+            <h1 id="question"></h1>
+            <button class="choices" id="btn1"></button>
+            <button class="choices" id="btn2"></button>
+            <button class="choices" id="btn3"></button>
+            <button class="choices" id="btn4"></button>
+            <p id="eval"></p>
+        </section>
+
+        <section class="end-quiz" id="end-quiz" display="none">
+            <h1>All Done!</h1>
+            <p id="final-score"></p>
+            <form id="save-score-form">
+                <label for="">Enter your initials: </label>
+                <input type="text">
+                <button type="submit" id="initials-submit-btn">Submit</button>
+            </form>
+            <p id="eval-last"></p>
+        </section>
+        
     </main>
     <script src="./assets/js/script.js"></script>
 </body>
