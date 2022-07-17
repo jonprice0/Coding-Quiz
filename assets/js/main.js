@@ -1,6 +1,8 @@
+// Sets the timer and the question index
 var timeLeft = 75;
 var i = 0;
 
+// The question array
 var questionArr = [
     {
         "question": "Commonly used data types do NOT include:",
@@ -44,6 +46,7 @@ var questionArr = [
     }
 ];
 
+// Handles the initials submit button; sets score to localStorage; includes some error handling
 var handleScoreSubmit = function(event) {
     event.preventDefault();
 
@@ -66,6 +69,7 @@ var handleScoreSubmit = function(event) {
     location.replace('./high-score.html')     
 };
 
+// Function to end the quiz; displays score and allows user to enter their initials; also displays response to the last answer until timeout
 var endQuiz = function(previousAnswer) {
     document.querySelector("#timer").innerHTML = "Timer: " + timeLeft;
     document.getElementById("quiz-mode").style.display = "none";
@@ -83,6 +87,7 @@ var endQuiz = function(previousAnswer) {
     }, 1800);
 };
 
+// This function renders the questions and conditionally renders the response to previous answer; calls endQuiz function after the last question
 var renderQuestion = function(previousAnswer) {
     if (i < questionArr.length) {
         document.getElementById("quiz-mode").style.display = "block";
@@ -110,6 +115,7 @@ var renderQuestion = function(previousAnswer) {
     }
 };
 
+// This function handles the answer evaluation, deducts time for an incorrect answer, increments the question array index and calls renderQuestion function
 var handleAnswerSubmit = function(event) {
     if (event.target.innerHTML === questionArr[i].answer) {
         i++;
@@ -127,6 +133,7 @@ var handleAnswerSubmit = function(event) {
     }   
 };
 
+// This function hides the home page, starts the timer and calls the renderQuestion function
 var startQuiz = function() {
     document.getElementById("home-page").style.display = "none";
     document.querySelector("#timer").innerHTML = "Timer: " + timeLeft;
@@ -141,4 +148,5 @@ var startQuiz = function() {
     }, 1000);
 };
 
+// Listens for the user to start the quiz
 document.querySelector("#start-btn").addEventListener("click", startQuiz);

@@ -1,3 +1,4 @@
+/* Style all of the sections and set the initial display properties for the sections */
 section {
     text-align: center;
     width: 80%;
@@ -21,8 +22,10 @@ section {
     display: block
 }
 
+/* Set the styles for the header and the timer */
 header {
     margin-top: 15px
+
 }
 header a {
     font-size: 20px;
@@ -36,6 +39,7 @@ header a {
     float: right
 }
 
+/* Set the styles for the home-page */
 main {
     margin-top: 100px
 }
@@ -64,6 +68,7 @@ h1 {
     background-color: #9C6CEB;
 }
 
+/* Set the styles for the quiz section */
 #question {
     font-size: 42px;
     margin-bottom: 22px
@@ -96,6 +101,7 @@ h1 {
     font-size: xx-large
 }
 
+/* Sets the styles for the end-quiz section */
 #end-quiz {
     text-align: center
 }
@@ -140,6 +146,7 @@ h1 {
     font-size: xx-large
 }
 
+/* Sets the styles for the high-score page */
 #high-score-content h1, #high-score-content p, #high-score-content ul, #high-score-content div {
     text-align: center;
 }
