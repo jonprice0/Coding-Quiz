@@ -1,12 +1,15 @@
+section {
+    text-align: center;
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%
+}
+
 #home-page {
     display: block
 }
 
-#quiz-mode {
-    display: none
-}
-
-#end-quiz {
+#quiz-mode, #end-quiz  {
     display: none
 }
 
@@ -17,3 +20,158 @@
 #scores-list {
     display: block
 }
+
+header {
+    margin-top: 15px
+}
+header a {
+    font-size: 20px;
+    text-decoration: none;
+    margin-left: 15px
+}
+
+#timer {
+    font-size: 20px;
+    margin-right: 15px;
+    float: right
+}
+
+main {
+    margin-top: 100px
+}
+
+h1 {
+    font-weight: bold;
+    font-size: 50px;
+}
+
+#home-page p {
+    margin-top: 20px;
+    font-size: 26px;
+}
+
+#home-page button {
+    padding: 12px;
+    margin-top: 28px;
+    border-radius: 7px;
+    background-color: #40069E;
+    font-size: 28px;
+    font-weight: lighter;
+    color: lightgray
+}
+
+#home-page button:active {
+    background-color: #9C6CEB;
+}
+
+#question {
+    font-size: 42px;
+    margin-bottom: 22px
+}
+
+.choices {
+    display: block;
+    padding: 12px;
+    margin-top: 8px;
+    border-radius: 8px;
+    width: 180px;
+    background-color: #40069E;
+    font-size: 20px;
+    text-align: left;
+    font-weight: lighter;
+    color: lightgray
+}
+
+#quiz-mode button:active, #end-quiz button:active {
+    background-color: #9C6CEB;
+}
+
+#eval {
+    display: initial;
+    margin-top: 26px;
+    border-top: 1px solid grey;
+    padding-top: 8px;
+    color: grey;
+    font-style: italic;
+    font-size: xx-large
+}
+
+#end-quiz {
+    text-align: center
+}
+
+#final-score {
+    margin-top: 20px;
+    margin-left: 20%;
+    margin-right: 20%;
+    font-size: 26px;
+}
+
+#save-score-form {
+    margin-top: 12px;
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+#label, #end-quiz input, #initials-submit-btn {
+    margin-top: 10px;
+    font-size: 26px;
+    font-weight: lighter;
+}
+
+#end-quiz input {
+    width: 100px;
+}
+
+#initials-submit-btn {
+    margin-top: 4px;
+    background-color: #40069E;
+    color: lightgray;
+    border-radius: 6px;
+}
+
+#eval-last {
+    display: block;
+    margin-top: 26px;
+    border-top: 1px solid grey;
+    padding-top: 8px;
+    color: grey;
+    font-style: italic;
+    font-size: xx-large
+}
+
+#high-score-content h1, #high-score-content p, #high-score-content ul, #high-score-content div {
+    text-align: center;
+}
+
+#back, #clear {
+    margin-top: 10px;
+    background-color: #40069E;
+    color: lightgray;
+    border-radius: 6px;
+}
+
+#back:active, #clear:active {
+    background-color: #9C6CEB;
+}
+
+#high-score-content li {
+    margin: auto;
+    margin-top: 8px;
+    padding: 4px;
+    border-radius: 3px;
+    background-color:lightgrey;
+    width: 120px
+}
+
+
+
+
+
+
+
+
+
+
+
+

@@ -4,18 +4,21 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/css/reset.css">
     <link rel="stylesheet" href="./assets/css/style.css">
     <title>High Scores</title>
 </head>
 <body>
-    <main>
+    <main id="high-score-content">
         <h1>High scores</h1>
         <p id="no-scores">There are no scores yet. Be the first on the board!</p>
         <ul id="scores-list">
 
         </ul>
-        <button id="back">Go back</button>
-        <button id="clear">Clear high scores</button>
+        <div id="high-score-btn-wrapper">
+            <button id="back">Go back</button>
+            <button id="clear">Clear high scores</button>
+        </div>
     </main>
     <script src="./assets/js/high-score.js"></script>
 </body>

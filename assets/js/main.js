@@ -1,5 +1,5 @@
 var timeLeft = 75;
-var i = 0
+var i = 0;
 
 var questionArr = [
     {
@@ -49,6 +49,12 @@ var handleScoreSubmit = function(event) {
 
     var initials = document.querySelector("input[name='initials']").value;
     var score = timeLeft;
+
+    if (typeof initials === "undefined" || initials === "") {
+        alert("Please enter your initials to continue.");
+        handleScoreSubmit();
+    };
+
     if (!localStorage.getItem("scores")) {
         var scores = [];
         localStorage.setItem("scores", JSON.stringify(scores));
@@ -72,6 +78,9 @@ var endQuiz = function(previousAnswer) {
     } else {
         document.getElementById("eval-last").innerHTML = "Wrong!";
     }
+    var clearResponse = setTimeout(function() {
+        document.getElementById("eval-last").style.display = "none";
+    }, 1800);
 };
 
 var renderQuestion = function(previousAnswer) {
@@ -88,12 +97,14 @@ var renderQuestion = function(previousAnswer) {
         document.getElementById("btn4").addEventListener("click", handleAnswerSubmit);
 
         if (previousAnswer === true) {
+            document.getElementById("eval").style.display = "block";
             document.getElementById("eval").innerHTML = "Correct!";
         } else if (previousAnswer === false) {
+            document.getElementById("eval").style.display = "block";
             document.getElementById("eval").innerHTML = "Wrong!";
         } else {
-            document.getElementById("eval").innerHTML = "";
-        }
+            document.getElementById("eval").style.display = "none";
+        };
     } else {
         endQuiz(previousAnswer);
     }
@@ -103,10 +114,16 @@ var handleAnswerSubmit = function(event) {
     if (event.target.innerHTML === questionArr[i].answer) {
         i++;
         renderQuestion(true);
+        var clearResponse = setTimeout(function() {
+            document.getElementById("eval").style.display = "none";
+        }, 1800);
     } else {
-        timeLeft = timeLeft -10;
         i++;
+        timeLeft = timeLeft -10;
         renderQuestion(false);
+        var clearResponse = setTimeout(function() {
+            document.getElementById("eval").style.display = "none";
+        }, 1800);
     }   
 };
 

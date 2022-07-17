@@ -7,7 +7,7 @@ if (!scoresArr) {
     for (i = 0; i < scoresArr.length; i++) {
         scoreEntry = document.createElement("li");
         scoreEntry.innerHTML = scoresArr[i];
-        console.log(scoreEntry);
+        scoreEntry.style = "backgroud-color:grey";
         document.getElementById("scores-list").appendChild(scoreEntry);
     }
 }
