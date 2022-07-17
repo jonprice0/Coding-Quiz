@@ -1,4 +1,4 @@
-# Password Generator #
+# Coding Quiz #
 
 ## Objective ##
 
